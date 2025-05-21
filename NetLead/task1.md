@@ -1,9 +1,13 @@
-﻿📚 Task: Implement Role-Based and Ownership-Based Authorization in .NET API
+﻿📚 Task
+
+Implement Role-Based and Ownership-Based Authorization in .NET API
 
 🎯 Objective
+
 Enhance the security of the BooksController in an existing .NET API by implementing granular authorization rules based on user roles and resource ownership.
 
 🧩 Context
+
 The API is configured to accept JSON Web Tokens (JWT) for authentication.
 
 JWT tokens include:
@@ -13,6 +17,7 @@ User roles (e.g., "Admin", "Editor")
 A list of book IDs authored by the user (e.g., "Books": "1,2,3")
 
 ✅ Specific Requirements
+
 🔐 GET Method Authorization
 The GET method in BooksController must be accessible only to users who have either of the following roles:
 
