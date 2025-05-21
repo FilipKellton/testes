@@ -14,6 +14,8 @@ builder.Services.AddTransient<ITransactionHandler, CashTransactionHandler>();
 var assemblies = new[] { typeof(Program), }.Select(y => y.Assembly).ToArray();
 builder.Services.AddMediatR(y => { y.RegisterServicesFromAssemblies(assemblies); });
 
+builder.Services.AddRateLimit();
+
 // Add Authorization services
 builder.Services.AddAuthorization();
 
@@ -57,6 +59,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseRateLimiter();
 
 app.UseAuthentication();
 app.UseAuthorization();
