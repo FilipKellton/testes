@@ -7,13 +7,14 @@ namespace NetLead.Controllers;
 [Authorize]
 public class BooksController : Controller
 {
-
+    [Authorize(Policy = "EditorOrAdminPolicy")]
     [HttpGet]
     public IActionResult Get()
     {
         return Ok();
     }
 
+    [Authorize(Policy = "AdminOrAuthorPolicy")]
     [HttpDelete("{id:int}")]
     public IActionResult Delete([FromRoute] int id)
     {
