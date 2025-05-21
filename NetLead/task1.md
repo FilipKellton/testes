@@ -29,5 +29,4 @@ The user is the author of the specific book being deleted.
 
 The user’s authored book IDs will be extracted from the Books claim in the JWT.
 
-These will be compared against the AuthorId of the book being deleted.
-
+These will be compared against the id of the book being deleted.
