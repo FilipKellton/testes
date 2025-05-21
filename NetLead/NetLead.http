@@ -1,0 +1,6 @@
+@NetLead_HostAddress = http://localhost:5201
+
+GET {{NetLead_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
