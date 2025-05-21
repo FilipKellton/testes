@@ -1,10 +1,18 @@
 using Microsoft.OpenApi.Models;
 using NetLead.Extensions;
+using NetLead.Services;
+using NetLead.Services.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAuth();
+
+builder.Services.AddTransient<ITransactionHandler, OnlineTransactionHandler>();
+builder.Services.AddTransient<ITransactionHandler, CashTransactionHandler>();
+
+var assemblies = new[] { typeof(Program), }.Select(y => y.Assembly).ToArray();
+builder.Services.AddMediatR(y => { y.RegisterServicesFromAssemblies(assemblies); });
 
 // Add Authorization services
 builder.Services.AddAuthorization();

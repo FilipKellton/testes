@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NetLead.Context.Transactions.Commands.HandleTransaction;
 
 namespace NetLead.Controllers;
 
 [Route("api/v1/transactions")]
 [AllowAnonymous]
-public class TransactionsController : Controller
+public class TransactionsController(IMediator mediator) : Controller
 {
     [HttpPost("handle")]
-    public IActionResult Handle()
+    public async Task<IActionResult> Handle([FromBody] HandleTransactionCommand command, CancellationToken cancellationToken = default)
     {
-        return Ok();
+        var result = await mediator.Send(command, cancellationToken);
+        return Ok(result);
     }
 }

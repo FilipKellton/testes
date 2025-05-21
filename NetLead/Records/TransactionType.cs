@@ -2,6 +2,6 @@
 
 public enum TransactionType
 {
-    TypeA,
-    TypeB,
+    Online,
+    Cash,
 }
