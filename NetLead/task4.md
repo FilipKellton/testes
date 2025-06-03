@@ -40,17 +40,3 @@ Ignore punctuation and non-alphabetic characters
 If topN is greater than the number of distinct words, return all available
 
 If topN <= 0 or input text is null/empty, return an empty list
-
-🧪 Unit Test Requirements
-
-The method must be covered by unit tests
-
-Tests should cover:
-
-Normal behavior with varied word frequencies
-
-Case insensitivity
-
-Punctuation removal
-
-Edge cases (empty input, null input, topN = 0, topN > total words)

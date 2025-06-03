@@ -2,6 +2,6 @@
 
 public enum TransactionType
 {
-    Online,
     Cash,
+    Online,
 }
