@@ -1,44 +1,38 @@
 ﻿🚦 Task
 
-Implement Rate Limiting on API Endpoints
+Generic Batch Validator
 
 🎯 Objective
 
-Enhance the stability and security of the API by implementing rate limiting, restricting the number of requests a client can make within a specified time window.
+Implement a generic static method that processes a batch of items, applying a custom validation rule to each, and returns a comprehensive result for the entire batch. The task focuses on effective use of C# generics, LINQ, and testability.
 
 🧩 Context
 
-The API is currently open to authenticated or anonymous users without any restrictions on how frequently endpoints can be accessed. This makes it vulnerable to:
-
-Abuse by high-frequency clients
-
-Accidental or malicious denial of service
-
-Resource overuse under load
-
-Implementing rate limiting will help mitigate these risks and ensure fair usage across consumers.
+In various systems, there's a need to process collections of data items and apply a common validation or filtering logic to them. This task requires you to build a reusable utility method that can take any type of data item and a custom validation predicate, returning clear results for each item in the batch.
 
 ✅ Specific Requirements
 
-🔒 Rate Limiting Behavior
-Clients should be limited to a configurable number of requests per a defined time window.
+Define a Generic Result Type:
 
-Example rule (to be configurable):
+Create a public generic class or record called `ValidationResult<T>` where `T` represents the type of the item being validated.
 
-100 requests per client per 15 minutes
+It should have the following properties:
 
-When the limit is exceeded:
+`T Item: The original item that was validated.`
 
-The API should return HTTP 429 Too Many Requests
+`bool IsValid: Indicates whether the item passed the validation.`
 
-Include a Retry-After header indicating when the client can retry
+`string? ErrorMessage: An optional message providing details if IsValid is false.`
 
-🎯 Scope of Rate Limiting
+Implement the Generic Validation Method:
 
-Apply rate limiting globally across all endpoints
+Create a public static class (e.g., BatchValidator).
 
-The implementation should work per client, where a client may be identified by:
+Within this class, implement the following static generic method:
 
-Authenticated user ID (preferred)
-
-IP address (for anonymous users or fallback)
+`public static IEnumerable<ValidationResult<T>> ValidateBatch<T>(
+    IEnumerable<T> items,
+    Func<T, bool> validationPredicate,
+    string? defaultFailureMessage = "Item failed validation." // Optional default message for failed items
+)
+`
